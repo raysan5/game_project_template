@@ -13,7 +13,7 @@
       <Filter>Utils</Filter>
     </ClCompile>
     <ClCompile Include="Source\External\PugiXml\src\pugixml.cpp">
-      <Filter>External\PuguiXml</Filter>
+      <Filter>External\PugiXml</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -44,10 +44,10 @@
       <Filter>Utils</Filter>
     </ClInclude>
     <ClInclude Include="Source\External\PugiXml\src\pugiconfig.hpp">
-      <Filter>External\PuguiXml</Filter>
+      <Filter>External\PugiXml</Filter>
     </ClInclude>
     <ClInclude Include="Source\External\PugiXml\src\pugixml.hpp">
-      <Filter>External\PuguiXml</Filter>
+      <Filter>External\PugiXml</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -57,7 +57,7 @@
     <Filter Include="Utils">
       <UniqueIdentifier>{2cad778a-d356-48b0-9fee-587f1bbb187e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="External\PuguiXml">
+    <Filter Include="External\PugiXml">
       <UniqueIdentifier>{2855ff7f-53a1-413d-a75b-18b4ade921dd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>

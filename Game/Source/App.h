@@ -84,7 +84,7 @@ private:
 
 	List<Module *> modules;
 
-	// TODO 2: Create two new variables from pugui namespace:
+	// TODO 2: Create new variables from pugui namespace:
 	// a xml_document to store the config file and
 	// two xml_node to read specific branches of the xml
 	pugi::xml_document configFile;

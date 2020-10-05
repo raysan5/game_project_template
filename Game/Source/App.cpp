@@ -32,14 +32,14 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(audio);
 	AddModule(scene);
 
-	// render last to swap buffer
+	// Render last to swap buffer
 	AddModule(render);
 }
 
 // Destructor
 App::~App()
 {
-	// release modules
+	// Release modules
 	ListItem<Module*>* item = modules.end;
 
 	while(item != NULL)
@@ -62,7 +62,7 @@ void App::AddModule(Module* module)
 // Called before render is available
 bool App::Awake()
 {
-	// TODO 3: Load config.xml file using load_file() method from the xml_document class.
+	// TODO 3: Load config from XML
 	bool ret = LoadConfig();
 
 	// TODO 4: Read the title from the config file
@@ -126,13 +126,15 @@ bool App::Update()
 	return ret;
 }
 
-// TODO 3: Load config from XML file
+// Load config from XML file
 bool App::LoadConfig()
 {
 	bool ret = true;
 
+	// TODO 3: Load config.xml file using load_file() method from the xml_document class
 	pugi::xml_parse_result result = configFile.load_file("config.xml");
 
+	// TODO 3: Check result for loading errors
 	if(result == NULL)
 	{
 		LOG("Could not load map xml file config.xml. pugi error: %s", result.description());
