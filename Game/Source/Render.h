@@ -30,8 +30,8 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-    void SetViewPort(const SDL_Rect& rect);
-    void ResetViewPort();
+	void SetViewPort(const SDL_Rect& rect);
+	void ResetViewPort();
 
 	// Drawing
 	bool DrawTexture(SDL_Texture* texture, int x, int y, const SDL_Rect* section = NULL, float speed = 1.0f, double angle = 0, int pivotX = INT_MAX, int pivotY = INT_MAX) const;

@@ -9,122 +9,122 @@
 #include "Defs.h"
 #include "Log.h"
 
-#include <iostream> 
-#include <sstream> 
+#include <iostream>
+#include <sstream>
 
 // Constructor
 App::App(int argc, char* args[]) : argc(argc), args(args)
 {
-    frames = 0;
+	frames = 0;
 
-    input = new Input();
-    win = new Window();
-    render = new Render();
-    tex = new Textures();
-    audio = new Audio();
-    scene = new Scene();
+	input = new Input();
+	win = new Window();
+	render = new Render();
+	tex = new Textures();
+	audio = new Audio();
+	scene = new Scene();
 
-    // Ordered for awake / Start / Update
-    // Reverse order of CleanUp
-    AddModule(input);
-    AddModule(win);
-    AddModule(tex);
-    AddModule(audio);
-    AddModule(scene);
+	// Ordered for awake / Start / Update
+	// Reverse order of CleanUp
+	AddModule(input);
+	AddModule(win);
+	AddModule(tex);
+	AddModule(audio);
+	AddModule(scene);
 
-    // render last to swap buffer
-    AddModule(render);
+	// render last to swap buffer
+	AddModule(render);
 }
 
 // Destructor
 App::~App()
 {
-    // release modules
-    ListItem<Module*>* item = modules.end;
+	// release modules
+	ListItem<Module*>* item = modules.end;
 
-    while(item != NULL)
-    {
-        RELEASE(item->data);
-        item = item->prev;
-    }
+	while(item != NULL)
+	{
+		RELEASE(item->data);
+		item = item->prev;
+	}
 
-    modules.clear();
+	modules.clear();
 
-    configFile.reset();
+	configFile.reset();
 }
 
 void App::AddModule(Module* module)
 {
-    module->Init();
-    modules.add(module);
+	module->Init();
+	modules.add(module);
 }
 
 // Called before render is available
 bool App::Awake()
 {
-    // TODO 3: Load config.xml file using load_file() method from the xml_document class.
+	// TODO 3: Load config.xml file using load_file() method from the xml_document class.
 	// If everything goes well, load the top tag inside the xml_node property created in the last TODO
-    bool ret = LoadConfig();
+	bool ret = LoadConfig();
 
-    // TODO 4: Read the title from the config file
-    title.create(configApp.child("title").child_value());
-    organization.create(configApp.child("organization").child_value());
+	// TODO 4: Read the title from the config file
+	title.create(configApp.child("title").child_value());
+	organization.create(configApp.child("organization").child_value());
 
-    if(ret == true)
-    {
-        ListItem<Module*>* item;
-        item = modules.start;
+	if(ret == true)
+	{
+		ListItem<Module*>* item;
+		item = modules.start;
 
-        while(item != NULL && ret == true)
-        {
+		while(item != NULL && ret == true)
+		{
 			// TODO 6: Add a new argument to the Awake method to receive a pointer to an xml node.
 			// If the section with the module name exists in config.xml, fill the pointer with the valid xml_node
 			// that can be used to read all variables for that module.
 			// Send nullptr if the node does not exist in config.xml
-            ret = item->data->Awake(config.child(item->data->name.GetString()));
-            item = item->next;
-        }
-    }
+			ret = item->data->Awake(config.child(item->data->name.GetString()));
+			item = item->next;
+		}
+	}
 
-    return ret;
+	return ret;
 }
 
 // Called before the first frame
 bool App::Start()
 {
-    bool ret = true;
-    ListItem<Module*>* item;
-    item = modules.start;
+	bool ret = true;
+	ListItem<Module*>* item;
+	item = modules.start;
 
-    while(item != NULL && ret == true)
-    {
-        ret = item->data->Start();
-        item = item->next;
-    }
+	while(item != NULL && ret == true)
+	{
+		ret = item->data->Start();
+		item = item->next;
+	}
 
-    return ret;
+	return ret;
 }
 
 // Called each loop iteration
 bool App::Update()
 {
-    bool ret = true;
-    PrepareUpdate();
+	bool ret = true;
+	PrepareUpdate();
 
-    if(input->GetWindowEvent(WE_QUIT) == true)
-        ret = false;
+	if(input->GetWindowEvent(WE_QUIT) == true)
+		ret = false;
 
-    if(ret == true)
-        ret = PreUpdate();
+	if(ret == true)
+		ret = PreUpdate();
 
-    if(ret == true)
-        ret = DoUpdate();
+	if(ret == true)
+		ret = DoUpdate();
 
-    if(ret == true)
-        ret = PostUpdate();
+	if(ret == true)
+		ret = PostUpdate();
 
-    FinishUpdate();
-    return ret;
+	FinishUpdate();
+	return ret;
 }
 
 
@@ -132,22 +132,22 @@ bool App::Update()
 // TODO: Load config from XML file
 bool App::LoadConfig()
 {
-    bool ret = true;
+	bool ret = true;
 
-    pugi::xml_parse_result result = configFile.load_file("config.xml");
+	pugi::xml_parse_result result = configFile.load_file("config.xml");
 
-    if(result == NULL)
-    {
-        LOG("Could not load map xml file config.xml. pugi error: %s", result.description());
-        ret = false;
-    }
-    else
-    {
-        config = configFile.child("config");
-        configApp = config.child("app");
-    }
+	if(result == NULL)
+	{
+		LOG("Could not load map xml file config.xml. pugi error: %s", result.description());
+		ret = false;
+	}
+	else
+	{
+		config = configFile.child("config");
+		configApp = config.child("app");
+	}
 
-    return ret;
+	return ret;
 }
 
 // ---------------------------------------------
@@ -158,119 +158,119 @@ void App::PrepareUpdate()
 // ---------------------------------------------
 void App::FinishUpdate()
 {
-    // TODO: This is a good place to call load / Save functions
+	// TODO: This is a good place to call load / Save functions
 }
 
 // Call modules before each loop iteration
 bool App::PreUpdate()
 {
-    bool ret = true;
-    ListItem<Module*>* item;
-    item = modules.start;
-    Module* pModule = NULL;
+	bool ret = true;
+	ListItem<Module*>* item;
+	item = modules.start;
+	Module* pModule = NULL;
 
-    for(item = modules.start; item != NULL && ret == true; item = item->next)
-    {
-        pModule = item->data;
+	for(item = modules.start; item != NULL && ret == true; item = item->next)
+	{
+		pModule = item->data;
 
-        if(pModule->active == false) {
-            continue;
-        }
+		if(pModule->active == false) {
+			continue;
+		}
 
-        ret = item->data->PreUpdate();
-    }
+		ret = item->data->PreUpdate();
+	}
 
-    return ret;
+	return ret;
 }
 
 // Call modules on each loop iteration
 bool App::DoUpdate()
 {
-    bool ret = true;
-    ListItem<Module*>* item;
-    item = modules.start;
-    Module* pModule = NULL;
+	bool ret = true;
+	ListItem<Module*>* item;
+	item = modules.start;
+	Module* pModule = NULL;
 
-    for(item = modules.start; item != NULL && ret == true; item = item->next)
-    {
-        pModule = item->data;
+	for(item = modules.start; item != NULL && ret == true; item = item->next)
+	{
+		pModule = item->data;
 
-        if(pModule->active == false) {
-            continue;
-        }
+		if(pModule->active == false) {
+			continue;
+		}
 
-        ret = item->data->Update(dt);
-    }
+		ret = item->data->Update(dt);
+	}
 
-    return ret;
+	return ret;
 }
 
 // Call modules after each loop iteration
 bool App::PostUpdate()
 {
-    bool ret = true;
-    ListItem<Module*>* item;
-    Module* pModule = NULL;
+	bool ret = true;
+	ListItem<Module*>* item;
+	Module* pModule = NULL;
 
-    for(item = modules.start; item != NULL && ret == true; item = item->next)
-    {
-        pModule = item->data;
+	for(item = modules.start; item != NULL && ret == true; item = item->next)
+	{
+		pModule = item->data;
 
-        if(pModule->active == false) {
-            continue;
-        }
+		if(pModule->active == false) {
+			continue;
+		}
 
-        ret = item->data->PostUpdate();
-    }
+		ret = item->data->PostUpdate();
+	}
 
-    return ret;
+	return ret;
 }
 
 // Called before quitting
 bool App::CleanUp()
 {
-    bool ret = true;
-    ListItem<Module*>* item;
-    item = modules.end;
+	bool ret = true;
+	ListItem<Module*>* item;
+	item = modules.end;
 
-    while(item != NULL && ret == true)
-    {
-        ret = item->data->CleanUp();
-        item = item->prev;
-    }
+	while(item != NULL && ret == true)
+	{
+		ret = item->data->CleanUp();
+		item = item->prev;
+	}
 
-    return ret;
+	return ret;
 }
 
 // ---------------------------------------
 int App::GetArgc() const
 {
-    return argc;
+	return argc;
 }
 
 // ---------------------------------------
 const char* App::GetArgv(int index) const
 {
-    if(index < argc)
-        return args[index];
-    else
-        return NULL;
+	if(index < argc)
+		return args[index];
+	else
+		return NULL;
 }
 
 // ---------------------------------------
 const char* App::GetTitle() const
 {
-    return title.GetString();
+	return title.GetString();
 }
 
 // ---------------------------------------
 const char* App::GetOrganization() const
 {
-    return organization.GetString();
+	return organization.GetString();
 }
 
 
-// TODO 4: Create a simulation of the xml file to read 
+// TODO 4: Create a simulation of the xml file to read
 
 // TODO 5: Create a method to actually load an xml file
 // then call all the modules to load themselves
