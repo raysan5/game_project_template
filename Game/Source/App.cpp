@@ -63,12 +63,11 @@ void App::AddModule(Module* module)
 bool App::Awake()
 {
 	// TODO 3: Load config.xml file using load_file() method from the xml_document class.
-	// If everything goes well, load the top tag inside the xml_node property created in the last TODO
 	bool ret = LoadConfig();
 
 	// TODO 4: Read the title from the config file
 	title.create(configApp.child("title").child_value());
-	organization.create(configApp.child("organization").child_value());
+	win->SetTitle(title.GetString());
 
 	if(ret == true)
 	{
@@ -77,7 +76,7 @@ bool App::Awake()
 
 		while(item != NULL && ret == true)
 		{
-			// TODO 6: Add a new argument to the Awake method to receive a pointer to an xml node.
+			// TODO 5: Add a new argument to the Awake method to receive a pointer to an xml node.
 			// If the section with the module name exists in config.xml, fill the pointer with the valid xml_node
 			// that can be used to read all variables for that module.
 			// Send nullptr if the node does not exist in config.xml
@@ -127,9 +126,7 @@ bool App::Update()
 	return ret;
 }
 
-
-// ---------------------------------------------
-// TODO: Load config from XML file
+// TODO 3: Load config from XML file
 bool App::LoadConfig()
 {
 	bool ret = true;
@@ -158,7 +155,7 @@ void App::PrepareUpdate()
 // ---------------------------------------------
 void App::FinishUpdate()
 {
-	// TODO: This is a good place to call load / Save functions
+	// This is a good place to call Load / Save functions
 }
 
 // Call modules before each loop iteration
@@ -269,11 +266,4 @@ const char* App::GetOrganization() const
 	return organization.GetString();
 }
 
-
-// TODO 4: Create a simulation of the xml file to read
-
-// TODO 5: Create a method to actually load an xml file
-// then call all the modules to load themselves
-
-// TODO 7: Create a method to save the current state
 

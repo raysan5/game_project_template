@@ -291,13 +291,13 @@ public:
 			{
 				if(strncmp(src, &str[i], src_len) == 0)
 				{
-					// make room
+					// Make room
 					for(uint j = strlen(str) + diff; j > i + diff; --j)
 					{
 						str[j] = str[j - diff];
 					}
 
-					// copy
+					// Copy
 					for(uint j = 0; j < dst_len; ++j)
 					{
 						str[i++] = dst[j];
@@ -341,4 +341,4 @@ private:
 
 };
 
-#endif // __p2SString_H__
+#endif // __SString_H__

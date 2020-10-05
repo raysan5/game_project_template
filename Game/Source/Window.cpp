@@ -32,7 +32,8 @@ bool Window::Awake(pugi::xml_node& config)
 	}
 	else
 	{
-		//Create window
+		// Create window
+		// TODO 6: Load all required configurations from config.xml
 		Uint32 flags = SDL_WINDOW_SHOWN;
 		bool fullscreen = config.child("fullscreen").attribute("value").as_bool(false);
 		bool borderless = config.child("borderless").attribute("value").as_bool(false);

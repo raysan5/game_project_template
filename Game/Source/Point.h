@@ -128,4 +128,4 @@ public:
 typedef Point<int> iPoint;
 typedef Point<float> fPoint;
 
-#endif // __P2POINT_H__
+#endif // __POINT_H__

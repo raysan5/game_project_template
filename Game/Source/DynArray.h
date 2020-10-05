@@ -260,4 +260,4 @@ private:
 	}
 };
 
-#endif // __P2DYNARRAY_H__
+#endif // __DYNARRAY_H__

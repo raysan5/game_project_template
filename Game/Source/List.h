@@ -3,9 +3,7 @@
 
 #include "Defs.h"
 
-/**
-* Contains items from double linked list
-*/
+// Contains items from double linked list
 template<class tdata>
 struct ListItem
 {
@@ -23,9 +21,7 @@ struct ListItem
 	{}
 };
 
-/**
-* Manages a double linked list
-*/
+// Manages a double linked list
 template<class tdata>
 class List
 {
@@ -41,57 +37,47 @@ private:
 
 public:
 
-	/**
-	* Constructor
-	*/
+	// Constructor
 	inline List()
 	{
 		start = end = NULL;
 		size = 0;
 	}
 
-	/**
-	* Destructor
-	*/
+	// Destructor
 	~List()
 	{
 		clear();
 	}
 
-	/**
-	* Get Size
-	*/
+	// Get Size
 	unsigned int count() const
 	{
 		return size;
 	}
 
-	/**
-	* Add new item
-	*/
+	// Add new item
 	ListItem<tdata>* add(const tdata& item)
 	{
-		ListItem<tdata>*   p_data_item;
-		p_data_item = new ListItem < tdata >(item);
+		ListItem<tdata>* dataItem;
+		dataItem = new ListItem<tdata>(item);
 
 		if(start == NULL)
 		{
-			start = end = p_data_item;
+			start = end = dataItem;
 		}
 		else
 		{
-			p_data_item->prev = end;
-			end->next = p_data_item;
-			end = p_data_item;
+			dataItem->prev = end;
+			end->next = dataItem;
+			end = dataItem;
 		}
 
 		++size;
-		return(p_data_item);
+		return(dataItem);
 	}
 
-	/**
-	* Deletes an item from the list
-	*/
+	// Deletes an item from the list
 	bool del(ListItem<tdata>* item)
 	{
 		if(item == NULL)
@@ -131,9 +117,7 @@ public:
 		return(true);
 	}
 
-	/**
-	* Destroy and free all mem
-	*/
+	// Destroy and free all mem
 	void clear()
 	{
 		ListItem<tdata>*   p_data;
@@ -151,13 +135,11 @@ public:
 		size = 0;
 	}
 
-	/**
-	* read / write operator access directly to a position in the list
-	*/
-	tdata& operator  [](const unsigned int index)
+	// Read/write operator access directly to a position in the list
+	tdata& operator [](const unsigned int index)
 	{
-		long				  pos;
-		ListItem<tdata>*   p_item;
+		long pos;
+		ListItem<tdata>* p_item;
 		pos = 0;
 		p_item = start;
 
@@ -178,7 +160,7 @@ public:
 	/**
 	* const read operator access directly to a position in the list
 	*/
-	const tdata& operator  [](const unsigned int index) const
+	const tdata& operator [](const unsigned int index) const
 	{
 		long				  pos;
 		ListItem<tdata>*   p_item;
@@ -329,4 +311,4 @@ public:
 		}
 	}
 };
-#endif /*__p2List_H__*/
+#endif // LIST_H__
