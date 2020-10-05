@@ -65,12 +65,12 @@ bool App::Awake()
 	// TODO 3: Load config from XML
 	bool ret = LoadConfig();
 
-	// TODO 4: Read the title from the config file
-	title.create(configApp.child("title").child_value());
-	win->SetTitle(title.GetString());
-
 	if(ret == true)
 	{
+		// TODO 4: Read the title from the config file
+		title.create(configApp.child("title").child_value());
+		win->SetTitle(title.GetString());
+
 		ListItem<Module*>* item;
 		item = modules.start;
 
