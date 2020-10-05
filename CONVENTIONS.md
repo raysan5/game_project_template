@@ -12,8 +12,8 @@ Global variables | lowerCase | `bool fullscreen = false;`
 Constants | lowerCase | `const int maxValue = 8`
 Pointers | MyType* pointer | `Texture2D* array;`
 float values | always x.xf | `float value = 10.0f`
-Operators | value1*value2 | `int product = value*6;`
-Operators | value1/value2 | `int division = value/4;`
+Operators | value1 * value2 | `int product = value * 6;`
+Operators | value1 / value2 | `int division = value / 4;`
 Operators | value1 + value2 | `int sum = value + 10;`
 Operators | value1 - value2 | `int res = value - 5;`
 Enum | TitleCase | `TextureFormat`
