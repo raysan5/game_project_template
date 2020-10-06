@@ -88,12 +88,6 @@ bool Render::CleanUp()
 	return true;
 }
 
-// TODO 6: Create a method to load the state
-// for now it will be camera's x and y
-
-// TODO 8: Create a method to save the state of the renderer
-// using append_child and append_attribute
-
 void Render::SetBackgroundColor(SDL_Color color)
 {
 	background = color;
