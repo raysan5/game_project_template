@@ -1,5 +1,5 @@
 <!-- Config file for the game -->
-<!-- L01: TODO 1: Create a config file -->
+<!-- TODO 1: Create a config file -->
 <config>
   <app>
     <title>Game Development Testbed</title>
