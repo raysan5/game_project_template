@@ -48,7 +48,7 @@ App::~App()
 		item = item->prev;
 	}
 
-	modules.clear();
+	modules.Clear();
 
 	configFile.reset();
 }
@@ -56,7 +56,7 @@ App::~App()
 void App::AddModule(Module* module)
 {
 	module->Init();
-	modules.add(module);
+	modules.Add(module);
 }
 
 // Called before render is available
@@ -68,7 +68,7 @@ bool App::Awake()
 	if(ret == true)
 	{
 		// TODO 4: Read the title from the config file
-		title.create(configApp.child("title").child_value());
+		title.Create(configApp.child("title").child_value());
 		win->SetTitle(title.GetString());
 
 		ListItem<Module*>* item;

@@ -77,7 +77,7 @@ public:
 			delete[] str;
 	}
 
-	const SString& create(const char *format, ...)
+	const SString& Create(const char *format, ...)
 	{
 		size = 0;
 

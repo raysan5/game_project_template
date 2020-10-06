@@ -180,7 +180,6 @@ public:
 		return ret;
 	}
 
-
 	int BubbleSortOptimized()
 	{
 		int ret = 0;
@@ -203,7 +202,6 @@ public:
 		}
 		return ret;
 	}
-
 
 	int CombSort()
 	{
