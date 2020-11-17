@@ -20,7 +20,7 @@ public:
 	}
 
 	// Called before render is available
-	// TODO 5: Sending config file to all modules
+	// L01: DONE 5: Sending config file to all modules
 	virtual bool Awake(pugi::xml_node&)
 	{
 		return true;

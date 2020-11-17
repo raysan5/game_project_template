@@ -58,6 +58,7 @@ Thumbs.db
 *.cache
 *.ilk
 *.log
+*.tlog
 .vs
 
 [Bb]uild

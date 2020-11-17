@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
-<save>
+<!-- L02: TODO 4: Create a simulation xml file to read -->
+<game_state>
 	<input />
 	<window />
 	<textures />
@@ -8,4 +9,4 @@
 	<renderer>
 		<camera x="0" y="0" />
 	</renderer>
-</save>
+</game_state>

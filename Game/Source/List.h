@@ -11,9 +11,9 @@ struct ListItem
 	ListItem<tdata>* next;
 	ListItem<tdata>* prev;
 
-	inline ListItem(const tdata& _data)
+	inline ListItem(const tdata& pData)
 	{
-		data = _data;
+		data = pData;
 		next = prev = NULL;
 	}
 
@@ -51,7 +51,7 @@ public:
 	}
 
 	// Get Size
-	unsigned int count() const
+	unsigned int Count() const
 	{
 		return size;
 	}
@@ -120,15 +120,15 @@ public:
 	// Destroy and free all mem
 	void Clear()
 	{
-		ListItem<tdata>* p_data;
-		ListItem<tdata>* p_next;
-		p_data = start;
+		ListItem<tdata>* pData;
+		ListItem<tdata>* pNext;
+		pData = start;
 
-		while(p_data != NULL)
+		while(pData != NULL)
 		{
-			p_next = p_data->next;
-			RELEASE(p_data);
-			p_data = p_next;
+			pNext = pData->next;
+			RELEASE(pData);
+			pData = pNext;
 		}
 
 		start = end = NULL;
@@ -139,11 +139,11 @@ public:
 	tdata& operator [](const unsigned int index)
 	{
 		long pos;
-		ListItem<tdata>* p_item;
+		ListItem<tdata>* pItem;
 		pos = 0;
-		p_item = start;
+		pItem = start;
 
-		while(p_item != NULL)
+		while(pItem != NULL)
 		{
 			if(pos == index)
 			{
@@ -151,13 +151,15 @@ public:
 			}
 
 			++pos;
-			p_item = p_item->next;
+			pItem = pItem->next;
 		}
 
-		return(p_item->data);
+		return(pItem->data);
 	}
 
-	// Read operator access directly to a position in the list
+	/**
+	* const read operator access directly to a position in the list
+	*/
 	const tdata& operator [](const unsigned int index) const
 	{
 		long pos;
@@ -181,10 +183,9 @@ public:
 		return(pItem->data);
 	}
 
-	// Read operator access directly to a position in the list
-	const List<tdata>& operator +=(const List<tdata>& otherList)
+	const List<tdata>& operator +=(const List<tdata>& other_list)
 	{
-		ListItem<tdata>* pItem = otherList.start;
+		ListItem<tdata>* pItem = other_list.start;
 
 		while(pItem != NULL)
 		{
@@ -195,7 +196,6 @@ public:
 		return(*this);
 	}
 
-	// Access to a node in a position in the list
 	const ListItem<tdata>* At(unsigned int index) const
 	{
 		long pos = 0;
@@ -212,7 +212,6 @@ public:
 		return pItem;
 	}
 
-	// Access to a node in a position in the list
 	ListItem<tdata>* At(unsigned int index)
 	{
 		long pos = 0;
@@ -256,8 +255,7 @@ public:
 		return ret;
 	}
 
-	// Returns the first apperance of data as index (-1 if not found)
-	int find(const tdata& data)
+	int Find(const tdata& data)
 	{
 		ListItem<tdata>* tmp = start;
 		int index = 0;

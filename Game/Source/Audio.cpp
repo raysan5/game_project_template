@@ -85,7 +85,7 @@ bool Audio::CleanUp()
 }
 
 // Play a music file
-bool Audio::PlayMusic(const char* path, float fade_time)
+bool Audio::PlayMusic(const char* path, float fadeTime)
 {
 	bool ret = true;
 
@@ -94,9 +94,9 @@ bool Audio::PlayMusic(const char* path, float fade_time)
 
 	if(music != NULL)
 	{
-		if(fade_time > 0.0f)
+		if(fadeTime > 0.0f)
 		{
-			Mix_FadeOutMusic(int(fade_time * 1000.0f));
+			Mix_FadeOutMusic(int(fadeTime * 1000.0f));
 		}
 		else
 		{
@@ -116,9 +116,9 @@ bool Audio::PlayMusic(const char* path, float fade_time)
 	}
 	else
 	{
-		if(fade_time > 0.0f)
+		if(fadeTime > 0.0f)
 		{
-			if(Mix_FadeInMusic(music, -1, (int) (fade_time * 1000.0f)) < 0)
+			if(Mix_FadeInMusic(music, -1, (int) (fadeTime * 1000.0f)) < 0)
 			{
 				LOG("Cannot fade in music %s. Mix_GetError(): %s", path, Mix_GetError());
 				ret = false;
@@ -155,7 +155,7 @@ unsigned int Audio::LoadFx(const char* path)
 	else
 	{
 		fx.Add(chunk);
-		ret = fx.count();
+		ret = fx.Count();
 	}
 
 	return ret;
@@ -169,7 +169,7 @@ bool Audio::PlayFx(unsigned int id, int repeat)
 	if(!active)
 		return false;
 
-	if(id > 0 && id <= fx.count())
+	if(id > 0 && id <= fx.Count())
 	{
 		Mix_PlayChannel(-1, fx[id - 1], repeat);
 	}

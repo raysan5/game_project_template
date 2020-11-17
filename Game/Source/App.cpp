@@ -17,8 +17,8 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 {
 	frames = 0;
 
-	input = new Input();
 	win = new Window();
+	input = new Input();
 	render = new Render();
 	tex = new Textures();
 	audio = new Audio();
@@ -26,8 +26,8 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
-	AddModule(input);
 	AddModule(win);
+	AddModule(input);
 	AddModule(tex);
 	AddModule(audio);
 	AddModule(scene);
@@ -49,8 +49,6 @@ App::~App()
 	}
 
 	modules.Clear();
-
-	configFile.reset();
 }
 
 void App::AddModule(Module* module)
@@ -164,8 +162,8 @@ void App::FinishUpdate()
 bool App::PreUpdate()
 {
 	bool ret = true;
+
 	ListItem<Module*>* item;
-	item = modules.start;
 	Module* pModule = NULL;
 
 	for(item = modules.start; item != NULL && ret == true; item = item->next)
