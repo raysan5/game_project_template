@@ -27,7 +27,7 @@ public:
 		this->y = y;
 	}
 
-	Point& create(const TYPE& x, const TYPE& y)
+	Point& Create(const TYPE& x, const TYPE& y)
 	{
 		this->x = x;
 		this->y = y;
