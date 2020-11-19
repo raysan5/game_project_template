@@ -63,3 +63,5 @@ Assets/Characters/enemy_slime.png
 Assets/Common/font_arial.ttf
 Assets/GUI/gui.png
 ```
+
+Use descriptive names for the files, it would be perfect if just reading the name of the file, it was possible to know what is that file and where it fits in the game.
