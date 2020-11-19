@@ -50,7 +50,7 @@ void SomeFunction()
   
 Files should be organized by context and usage in the game, think about the loading requirements and put all the assets that need to be loaded at the same time together.
 
-Here an example, note that some assets require to be all loaded at once while other assets require to be loaded only at initialization (GUI).
+Here an example, note that some assets require to be loaded all at once while other assets require to be loaded only at initialization (gui, font).
   
 ```
 Assets/Audio/Fx/long_jump.wav
