@@ -16,14 +16,14 @@ Operators | value1 * value2 | `int product = value * 6;`
 Operators | value1 / value2 | `int division = value / 4;`
 Operators | value1 + value2 | `int sum = value + 10;`
 Operators | value1 - value2 | `int res = value - 5;`
-Enum | TitleCase | `TextureFormat`
+Enum | TitleCase | `enum TextureFormat`
 Enum members | ALL_CAPS | `UNCOMPRESSED_R8G8B8`
 Struct | TitleCase | `struct Texture2D`
 Struct members |lowerCase | `texture.id`
 Functions | TitleCase | `InitWindow()`
 Class | TitleCase | `class Player`
-Class fields | lowerCase | `Vector2 position`
-Class methods | TitleCase | `GetPosition()`
+Class Fields | lowerCase | `Vector2 position`
+Class Methods | TitleCase | `GetPosition()`
 Ternary Operator | (condition)? result1 : result2 | `printf("Value is 0: %s", (value == 0)? "yes" : "no");`
 
  - Project uses aligned braces or curly brackets:
@@ -37,3 +37,29 @@ void SomeFunction()
  - Project uses **TABS** instead of 4 spaces.
 
  - Trailing spaces MUST be avoided!
+ 
+ ## Files and Directories Naming Conventions
+ 
+  - Directories will be named using `TitleCase` : `Assets/Audio/Music`
+  
+  - Files will be named using `snake_case`: `main_title.png`
+  
+  _NOTE: Avoid any space or special character in the files/dir naming!_
+  
+  ### Directories Organization:
+  
+Files should be organized by context and usage in the game, think about the loading requirements and put all the assets that need to be loaded at the same time together.
+
+Here an example, note that some assets require to be all loaded at once while other assets require to be loaded only at initialization (GUI).
+  
+```
+Assets/Audio/Fx/long_jump.wav
+Assets/Audio/Music/main_theme.ogg
+Assets/Screens/Logo/logo.png
+Assets/Screens/Title/title.png
+Assets/Screens/Gameplay/background.png
+Assets/Characters/player.png
+Assets/Characters/enemy_slime.png
+Assets/Common/font_arial.ttf
+Assets/GUI/gui.png
+```
