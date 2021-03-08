@@ -21,7 +21,6 @@
  - {Dev02} - {Role(s)}
  - {Dev03} - {Role(s)}
  - {Dev04} - {Role(s)}
- - {Dev05} - {Role(s)}
 
 ## License
 
